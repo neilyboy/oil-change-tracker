@@ -1,0 +1,33 @@
+{
+  "name": "oil-change-tracker",
+  "version": "0.1.0",
+  "description": "Mobile-first dark themed web app to track vehicle oil changes (no auth).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "gen:icons": "node scripts/generate-icons.js"
+  },
+  "author": "neilyboy",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/neilyboy/oil-change-tracker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/neilyboy/oil-change-tracker/issues"
+  },
+  "homepage": "https://github.com/neilyboy/oil-change-tracker#readme",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "better-sqlite3": "^9.4.3",
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1",
+    "archiver": "^6.0.1",
+    "unzipper": "^0.10.14"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0",
+    "sharp": "^0.33.3"
+  }
+}

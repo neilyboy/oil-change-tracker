@@ -1,0 +1,39 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Env & editor
+.env
+.vscode/
+.DS_Store
+*.local
+
+# Runtime data (do not publish user data)
+data/
+uploads/
+
+# Build/coverage
+coverage/
+dist/
+
+# SQLite/DB artifacts
+*.sqlite
+*.db
+
+# OS junk
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Backups/archives (generated)
+*.zip
+*.tar
+*.tar.gz
+
+# Service worker caches (if exported locally)
+.cache/
