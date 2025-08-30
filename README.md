@@ -1,8 +1,13 @@
-# Oil Change Tracker
+# 🛢️ Oil Change Tracker
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![Node](https://img.shields.io/badge/node-20.x-43853d?logo=node.js&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-ready-2496ED?logo=docker&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-ready-5a0fc8)
 
 A mobile-first, dark-themed web app to track oil changes for family and friends. No auth. Runs as a single Docker container with persistent volumes.
 
-## Features
+## ✨ Features
 
 - Track vehicles with photo, VIN, owner, mileage, oil specs, and intervals
 - VIN decode via NHTSA (no API key)
@@ -12,7 +17,39 @@ A mobile-first, dark-themed web app to track oil changes for family and friends.
 - Backup/restore database (JSON). Full ZIP backup/restore includes database + all uploads (images/PDFs)
 - Mobile UI with camera capture on file inputs
 
-## Quick Start (Docker)
+## 🐳 Docker Compose (recommended)
+
+1) Optional: configure ports
+
+```bash
+cp .env.example .env
+# Edit .env if you want a different port
+# HOST_PORT=3000  # port on your machine
+# APP_PORT=3000   # app's internal port
+```
+
+2) Build and run
+
+```bash
+docker compose up -d --build
+```
+
+Open http://localhost:3000 (or your HOST_PORT). Data and uploads persist in named volumes.
+
+Stop:
+
+```bash
+docker compose down
+```
+
+Update (pull latest code and rebuild):
+
+```bash
+git pull
+docker compose up -d --build
+```
+
+## 🐋 Docker (manual)
 
 1) Build image
 
@@ -41,7 +78,7 @@ docker stop oiltracker && docker rm oiltracker
 
 To update image: rebuild, then recreate container using the same named volumes to keep data/uploads.
 
-### If port 3000 is already in use
+### 🔌 If port 3000 is already in use
 
 Option A — change only the host port mapping (recommended):
 
@@ -76,7 +113,7 @@ Tip: find your server's LAN IP with:
 hostname -I
 ```
 
-## Development (optional)
+## 🧪 Development (optional)
 
 ```bash
 npm install
@@ -84,7 +121,7 @@ npm run dev
 # open http://localhost:3000
 ```
 
-## API Notes
+## 🔗 API Notes
 
 - GET `/api/vin/:vin` – Decode VIN via NHTSA
 - Vehicles: CRUD at `/api/vehicles` and `/api/vehicles/:id`
@@ -94,7 +131,7 @@ npm run dev
 - Full Backup (ZIP): GET `/api/backup/full` -> ZIP containing `db.json` and `uploads/`
 - Restore Full (ZIP): POST `/api/restore/full` as `multipart/form-data` with field `file` (the ZIP)
 
-## Backup & Restore
+## 💾 Backup & Restore
 
 There are two backup modes available under Settings:
 
@@ -127,17 +164,17 @@ Notes:
 - During full restore, the server replaces the `uploads/` directory with the archive contents and restores the database snapshot.
 - Large ZIPs may take time to download/upload depending on your network.
 
-## Data Persistence
+## 📦 Data Persistence
 
 - SQLite DB at `/app/data/app.db` (mounted via `-v oil_data:/app/data`)
 - Uploads under `/app/uploads` (mounted via `-v oil_uploads:/app/uploads`)
 
-## Notes
+## ℹ️ Notes
 
 - Placeholder image is used when no photo is uploaded.
 - The app is unauthenticated; keep it on a trusted LAN.
 
-## PWA (Install & Offline)
+## 📲 PWA (Install & Offline)
 
 - Install on Android (Chrome): open the app, tap the three-dot menu → Add to Home screen.
 - Install on iOS (Safari): tap Share → Add to Home Screen.
@@ -157,12 +194,16 @@ magick -background none public/placeholder-vehicle.svg -resize 180x180 public/ap
 
 Then update `public/manifest.webmanifest` icons and `public/index.html` Apple icon link if you add PNGs. Already wired to look for files in `public/icons/`.
 
-### Updating the app
+### ♻️ Updating the app
 
 - The service worker updates automatically when `service-worker.js` or cached files change. If you get a stale UI, do a hard refresh or clear site data in your browser settings.
 
-## Mobile Tips
+## 📱 Mobile Tips
 
 - Camera capture: image inputs are set with `accept="image/*" capture="environment"` to open the rear camera on mobile when possible.
 - Client-side image optimization: photos and receipts are auto-rotated using EXIF and compressed before upload to reduce size.
 - Skeleton loading: lists and detail pages render placeholders during data fetch for smoother UX; images are lazy-loaded.
+
+## 📝 License
+
+MIT — see [LICENSE](./LICENSE).
