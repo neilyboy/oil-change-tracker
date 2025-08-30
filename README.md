@@ -17,7 +17,7 @@ A mobile-first, dark-themed web app to track oil changes for family and friends.
 1) Build image
 
 ```bash
-docker build -t oil-change-tracker:latest /home/neil/CascadeProjects/oil-change-tracker
+docker build -t oil-change-tracker:latest .
 ```
 
 2) Run container with persistent volumes
